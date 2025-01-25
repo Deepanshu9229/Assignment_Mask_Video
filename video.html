@@ -5,109 +5,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Protected Content</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 0;
-            padding: 20px;
-            background-color: #d3d3d3;
-        }
-
-        .video-container {
-            position: relative;
-            width: 80%;
-            height: fit-content;
-            max-width: 640px;
-            margin: 20px auto;
-            overflow: hidden;
-            border-radius: 8px;
-            background: transparent;
-        }
-
-        iframe {
-            width: 100%;
-            height: 360px;
-            border: 0;
-        }
-
-        .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-
-            z-index: 2;
-            cursor: pointer;
-        }
-
-
-        .center-btn {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            padding: 20px 20px;
-            background-color: transparent;
-            border: none;
-            font-size: 16px;
-            cursor: pointer;
-            border-radius: 5px;
-            z-index: 3;
-        }
-    </style>
+    <link rel="stylesheet" href="video.css">
 </head>
 
 <body>
     <h1>Welcome to the Protected Video Page</h1>
     <div class="video-container">
         <iframe id="videoFrame"
-            src="https://www.youtube.com/embed/Ob_E91VUQZU?modestbranding=1&controls=0&rel=0&autoplay=1" frameborder="0"
-            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            src="https://www.youtube-nocookie.com/embed/gkD7TbavRwA?controls=0&modestbranding=1&rel=0&autoplay=1"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+        </iframe>
+
         <!-- Overlay layer for disabling right-click -->
         <div class="overlay" id="overlay"></div>
         <!-- Play/Pause button -->
         <button class="center-btn" id="playPauseBtn"></button>
     </div>
-
-    <script>
-        // Disable right-click
-        document.addEventListener("contextmenu", (e) => e.preventDefault());
-
-        // Disable other keyboard shortcuts (F12, Ctrl+Shift+I, Ctrl+U)
-        document.addEventListener("keydown", (e) => {
-            if (e.key == "F12" || (e.ctrlKey && e.shiftKey && e.key == "I") || (e.ctrlKey && e.key == "u")) {
-                e.preventDefault();
-            }
-        });
-
-        const videoFrame = document.getElementById('videoFrame');
-        const playPauseBtn = document.getElementById('playPauseBtn');
-        const overlay = document.getElementById('overlay');
-
-        // Button click functionality (optional, can use overlay click as well)
-        playPauseBtn.addEventListener('click', () => {
-            const isPlaying = videoFrame.src.includes('autoplay=1');
-            if (isPlaying) {
-                videoFrame.src = videoFrame.src.replace('autoplay=1', 'autoplay=0');
-                // playPauseBtn.textContent = 'Play';
-            } else {
-                videoFrame.src = videoFrame.src.replace('autoplay=0', 'autoplay=1');
-                // playPauseBtn.textContent = 'Pause';
-            }
-        });
-        playPauseBtn.addEventListener("mouseover", () => {
-            if (videoFrame.src.includes('autoplay=1')) {
-                playPauseBtn.textContent = "⏯️"; // Show play/pause icon
-            }
-        });
-
-        playPauseBtn.addEventListener("mouseout", () => {
-            playPauseBtn.textContent = "";
-        });
-
-    </script>
+    <script src="video.js"></script>
 </body>
 
 </html>
